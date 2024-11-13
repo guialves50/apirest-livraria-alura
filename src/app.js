@@ -1,5 +1,6 @@
 import express from "express";
 import conectaNaDatabase from "./config/dbConnect.js";
+import livro from "./models/Livro.js"
 
 const conexao = await conectaNaDatabase()
 
@@ -15,29 +16,13 @@ conexao.once("open", () => {
 const app = express()
 app.use(express.json())
 
-const livros = [
-    {
-        "id": 1,
-        "nome": "O Senhor dos Aneis"
-    },
-    {
-        "id": 2,
-        "nome": "Harry Potter"
-    }
-]
-
-function buscarLivro(id) {
-    return livros.filter((livro) => {
-        return livro.id === Number(id)
-    })
-}
-
 app.get("/", (req, res) => {
     res.status(200).send("Curso de Node.js")
 })
 
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros)
+app.get("/livros", async (req, res) => {
+    const buscaLivro = await livro.find({})
+    res.status(200).json(buscaLivro)
 })
 
 app.post("/livros", (req, res) => {

@@ -17,7 +17,7 @@ export default [
 			"no-unused-vars": "error",
 			"no-undef": "error",
 			"quotes": ["error", "double"],
-			"indent": ["error", "tab"],
+			"indent": ["error", "4"],
 			"semi": ["error", "always"],
 			"linebreak-style": ["error", "unix"]
 		}
